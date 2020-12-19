@@ -63,7 +63,7 @@ TfLiteStatus PerformCapture(tflite::ErrorReporter* error_reporter,
   if (ret != 0) {
     return kTfLiteError;
   }
-  if (fb->width == 96 && fb->height == 96) {
+  if (fb->width == 200 && fb->height == 200) {
     memcpy(image_data, fb->buf, fb->len);
   } else {
     // Trimming Image

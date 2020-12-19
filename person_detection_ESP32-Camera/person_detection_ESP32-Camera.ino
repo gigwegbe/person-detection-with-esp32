@@ -39,6 +39,8 @@ const int i2c_touch_addr = TOUCH_I2C_ADD;
 #define SPI_ON_TFT digitalWrite(LCD_CS, LOW)
 #define SPI_OFF_TFT digitalWrite(LCD_CS, HIGH)
 
+#define CONFIG_CAMERA_VFLIP true; 
+
 
 struct LGFX_Config
 {
@@ -205,7 +207,7 @@ void loop() {
     }
 
     //tft.pushImage(0, 0, 320, 480, (uint16_t*)img);
-    tft.pushImage(0, 0, 320, 480, (lgfx::swap565_t*)img->buf); // Image not displaying right.
+    tft.pushImage(160, 160, img->width, img->height, (lgfx::swap565_t*)img->buf); // Image not displaying right.
   
 }
   camera_fb_t* capture(){
@@ -215,6 +217,14 @@ void loop() {
       return img;
 }
 
+//  sensor_t *s = esp_camera_sensor_get();
+//     //initial sensors are flipped vertically and colors are a bit saturated
+//     if (s->id.PID == OV2640_PID)
+//     {
+//         s->set_vflip(s, 1);      //flip it back
+//         s->set_brightness(s, 0); //up the blightness just a bit
+//         s->set_saturation(s, 1); //lower the saturation
+//     }
 
 
 
@@ -287,7 +297,7 @@ void set_tft()
     // RGB=true / BGR=false The color order of the panels is set.RGB=true / BGR=false
     // False when omitted.If red and blue are replaced, change the settings.
     //panel.rgb_order = false;
-    panel.rgb_order = true ;
+    panel.rgb_order = false;
 
     // Set the number of pixels (width and height) that the panel's memory has.
     // If the settings are not right, the coordinates when using setRotation are off.
