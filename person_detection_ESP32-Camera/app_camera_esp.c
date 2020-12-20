@@ -78,7 +78,8 @@ int app_camera_init() {
   config.pin_pwdn = PWDN_GPIO_NUM; 
   config.pin_reset = -1;  // RESET_GPIO_NUM;
   config.xclk_freq_hz = XCLK_FREQ;
-  config.pixel_format = PIXFORMAT_RGB565;
+  //config.pixel_format = PIXFORMAT_YUV422;
+  config.pixel_format = CAMERA_PIXEL_FORMAT;
   config.frame_size = CAMERA_FRAME_SIZE;
   config.jpeg_quality = 10;
   config.fb_count = 1;
