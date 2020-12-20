@@ -173,6 +173,7 @@ void setup() {
     tft.begin();
     //tft.init();
     //tft.fillScreen(TFT_RED);
+    tft.setRotation(1);
     SPI_OFF_TFT;
 }
 
@@ -306,7 +307,7 @@ void set_tft()
     panel.offset_x = 0;
     panel.offset_y = 0;
 
-    // Set the value immediately after initializing setRotation.Set the value immediately after initializing setRotation.
+    // Set the value immediately after initializing setRotation. Set the value immediately after initializing setRotation.
     panel.rotation = 0;
 
     // If you want to change the direction when using setRotation offset_rotation the settings.
