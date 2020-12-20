@@ -195,38 +195,29 @@ void loop() {
   uint8_t person_score = output->data.uint8[kPersonIndex];
   uint8_t no_person_score = output->data.uint8[kNotAPersonIndex];
 
-
-  //showingImage();
   RespondToDetection(error_reporter, person_score, no_person_score);
 
 
   camera_fb_t *img = capture();
-    if (img == nullptr || img == 0) {
+  
+    if (img == nullptr || img == 0) 
+    {
         Serial.printf("snap fail\n");
         return;
     }
 
-    //tft.pushImage(0, 0, 320, 480, (uint16_t*)img);
-    tft.pushImage(160, 160, img->width, img->height, (lgfx::swap565_t*)img->buf); // Image not displaying right.
-  
-}
-  camera_fb_t* capture(){
-      camera_fb_t *img = NULL;
-      esp_err_t res = ESP_OK;
-      img = esp_camera_fb_get();
-      return img;
+    //tft.pushImage(160, 160, 320, 480, (uint16_t*)img);
+    tft.pushImage(160, 160, img->width, img->height, (lgfx::swap565_t*)img->buf); 
+
 }
 
-//  sensor_t *s = esp_camera_sensor_get();
-//     //initial sensors are flipped vertically and colors are a bit saturated
-//     if (s->id.PID == OV2640_PID)
-//     {
-//         s->set_vflip(s, 1);      //flip it back
-//         s->set_brightness(s, 0); //up the blightness just a bit
-//         s->set_saturation(s, 1); //lower the saturation
-//     }
-
-
+  camera_fb_t* capture()
+  {
+    camera_fb_t *img = NULL;
+    esp_err_t res = ESP_OK;
+    img = esp_camera_fb_get();
+    return img;
+  } 
 
 void set_tft()
 {
