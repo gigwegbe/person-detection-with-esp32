@@ -172,9 +172,11 @@ void setup() {
     set_tft();
     tft.begin();
     //tft.init();
-    tft.setRotation(1);
+    tft.setRotation(3);
     SPI_OFF_TFT;
 }
+
+  String imgname = "";
 
 // The name of this function is important for Arduino compatibility.
 void loop() {
@@ -195,9 +197,6 @@ void loop() {
   uint8_t person_score = output->data.uint8[kPersonIndex];
   uint8_t no_person_score = output->data.uint8[kNotAPersonIndex];
 
-  RespondToDetection(error_reporter, person_score, no_person_score);
-
-
   camera_fb_t *img = capture();
   
     if (img == nullptr || img == 0) 
@@ -205,9 +204,13 @@ void loop() {
         Serial.printf("snap fail\n");
         return;
     }
-
-    tft.pushImage(0, 0, img->width, img->height, (lgfx::grayscale_t*)img->buf); 
-
+    tft.clear(); 
+    tft.setTextColor(TFT_RED);
+    tft.setTextSize(2);
+    tft.setCursor(30, 280);
+    tft.println(TextRespondToDetection(person_score, no_person_score).c_str());
+    tft.pushImage(0, 0, img->width, img->height, (lgfx::grayscale_t*)img->buf);
+    delay(2);
 }
 
   camera_fb_t* capture()

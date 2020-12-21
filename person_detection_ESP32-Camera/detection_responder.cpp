@@ -15,21 +15,27 @@ limitations under the License.
 
 #include "detection_responder.h"
 
+
 // This dummy implementation writes person and no person scores to the error
 // console. Real applications will want to take some custom action instead, and
 // should implement their own versions of this function.
 void RespondToDetection(tflite::ErrorReporter* error_reporter,
                         uint8_t person_score, uint8_t no_person_score) {
-  //error_reporter->Report("Person score:%d No person score:%d", person_score,
-  //                       no_person_score);
-  
+
   if(person_score > no_person_score){
-     // liveResp(red, 635);
-     //Serial.println("A person");
      error_reporter->Report("A Person found");
     } else {
-      //liveResp(white, 631);
-      //Serial.println("Not person");
-      error_reporter->Report("Not found");
+     error_reporter->Report("Not found");
     }
 }
+std::string TextRespondToDetection(uint8_t person_score, uint8_t no_person_score){
+   std::string test = "Hello world";
+  if(person_score > no_person_score){
+     test = "A Person found";
+     return test;
+    } else {
+      test = "Not person";
+      return test;
+    }
+  
+  }
