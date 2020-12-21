@@ -173,7 +173,7 @@ void setup() {
     tft.begin();
     //tft.init();
     //tft.fillScreen(TFT_RED);
-    //tft.setRotation(1);
+    tft.setRotation(1);
     SPI_OFF_TFT;
 }
 
@@ -208,8 +208,8 @@ void loop() {
     }
 
     //tft.pushImage(160, 160, 96, 96, (uint16_t*)img);
-    tft.pushImage(0, 0, 96, 96, (lgfx::swap565_t*)img->buf); 
-    //tft.pushImage(160, 160, img->width, img->height, (lgfx::swap565_t*)img->buf); 
+    //tft.pushImage(0, 0, 96, 96, (lgfx::grayscale_t*)img->buf); 
+    tft.pushImage(160, 160, img->width, img->height, (lgfx::grayscale_t*)img->buf); 
 
 }
 
