@@ -208,8 +208,9 @@ void loop() {
     tft.setTextColor(TFT_RED);
     tft.setTextSize(2);
     tft.setCursor(30, 280);
-    tft.println(TextRespondToDetection(person_score, no_person_score).c_str());
-    tft.pushImage(0, 0, img->width, img->height, (lgfx::grayscale_t*)img->buf);
+    //tft.println(TextRespondToDetection(person_score, no_person_score).c_str());
+    tft.drawCentreString(TextRespondToDetection(person_score, no_person_score).c_str(),tft.width()/2, tft.height()/2 + 20, 2);
+    tft.pushImage(tft.width()/2 - 70, 40, img->width, img->height, (lgfx::grayscale_t*)img->buf);
     delay(2);
 }
 
