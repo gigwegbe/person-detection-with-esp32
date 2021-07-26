@@ -31,7 +31,7 @@ void RespondToDetection(tflite::ErrorReporter* error_reporter,
 std::string TextRespondToDetection(uint8_t person_score, uint8_t no_person_score){
    std::string test = "Hello world";
   if(person_score > no_person_score){
-     test = "A Person found";
+     test = "Person found";
      return test;
     } else {
       test = "Not person";
